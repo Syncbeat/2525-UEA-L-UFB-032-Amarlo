@@ -1,0 +1,82 @@
+
+using System;
+
+namespace FigurasGeometricas
+{
+  
+    public class Circulo
+    {
+        // Campo privado para almacenar el radio del circulo
+        private double radio;
+
+        // Constructor que recibe el valor del radio
+        public Circulo(double radio)
+        {
+            this.radio = radio;
+        }
+
+        //Fórmula: area = π * radio^2
+        public double CalcularArea()
+        {
+            return Math.PI * radio * radio;
+        }
+
+        // Formula: Perimetro = 2 * π * radio
+        public double CalcularPerimetro()
+        {
+            return 2 * Math.PI * radio;
+        }
+    }
+
+    public class Rectangulo
+    {
+       
+        private double baseRectangulo;
+        private double altura;
+
+        // Constructor que recibe la base y la altura como argumentos
+        public Rectangulo(double baseRectangulo, double altura)
+        {
+            this.baseRectangulo = baseRectangulo;
+            this.altura = altura;
+        }
+
+        
+        // UFormula: Area = base * altura
+        public double CalcularArea()
+        {
+            return baseRectangulo * altura;
+        }
+
+
+        // Formula: Perimetro = 2 * (base + altura)
+        public double CalcularPerimetro()
+        {
+            return 2 * (baseRectangulo + altura);
+        }
+    }
+
+    // Clase principal
+    class Programa
+    {
+        static void Main(string[] args)
+        {
+            // Crear un objeto de tipo Circulo con radio 5
+            Circulo miCirculo = new Circulo(5);
+            Console.WriteLine("Círculo:");
+            Console.WriteLine("Área: " + miCirculo.CalcularArea());
+            Console.WriteLine("Perímetro: " + miCirculo.CalcularPerimetro());
+
+            Console.WriteLine();
+
+            // Crear un objeto de tipo Rectangulo con base 4 y altura 3
+            Rectangulo miRectangulo = new Rectangulo(4, 3);
+            Console.WriteLine("Rectángulo:");
+            Console.WriteLine("Área: " + miRectangulo.CalcularArea());
+            Console.WriteLine("Perímetro: " + miRectangulo.CalcularPerimetro());
+
+            // Se preciona una tecla antes de cerrar
+            Console.ReadKey();
+        }
+    }
+}
