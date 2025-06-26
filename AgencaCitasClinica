@@ -1,0 +1,114 @@
+using System;
+
+class AgendaTurno
+{
+    struct Fecha
+    {
+        public int dia;
+        public int mes;
+        public int año;
+    }
+
+    struct Turno
+    {
+        public string nombre;
+        public string cédula;
+        public string motivo;
+        public Fecha fecha;
+        public int hora;
+        public int minuto;
+    }
+
+    public static void Main()
+    {
+        Turno[,] agenda = new Turno[7, 8];
+        int opcion;
+
+        do
+        {
+            Console.WriteLine("\nAGENDA DE TURNOS CLÍNICA");
+            Console.WriteLine("1. Agendar Turno");
+            Console.WriteLine("2. Historial de turnos");
+            Console.WriteLine("3. Salir");
+            Console.Write("Opción: ");
+            opcion = Convert.ToInt32(Console.ReadLine());
+
+            switch (opcion)
+            {
+                case 1:
+                    AgendarTurno(agenda);
+                    break;
+
+                case 2:
+                    Historial(agenda);
+                    break;
+            }
+
+        } while (opcion != 3);
+    }
+
+    static void AgendarTurno(Turno[,] agenda)
+    {
+        Console.Write("Día (1 a 6): ");
+        int dia = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Turno del día (1 a 8): ");
+        int turno = Convert.ToInt32(Console.ReadLine());
+
+        if (agenda[dia, turno].nombre != null)
+        {
+            Console.WriteLine("Espacio no disponible.");
+            return;
+        }
+
+        Turno paciente;
+
+        Console.Write("Nombre: ");
+        paciente.nombre = Console.ReadLine();
+
+        Console.Write("Cédula: ");
+        paciente.cédula = Console.ReadLine();
+
+        Console.Write("Motivo: ");
+        paciente.motivo = Console.ReadLine();
+
+        Console.Write("Fecha - Día: ");
+        paciente.fecha.dia = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Fecha - Mes: ");
+        paciente.fecha.mes = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Fecha - Año: ");
+        paciente.fecha.año = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Hora: ");
+        paciente.hora = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Minutos: ");
+        paciente.minuto = Convert.ToInt32(Console.ReadLine());
+
+        agenda[dia, turno] = paciente;
+
+        Console.WriteLine("Turno registrado con éxito.");
+    }
+
+    static void Historial(Turno[,] agenda)
+    {
+        for (int dia = 0; dia < 7; dia++)
+        {
+            for (int turno = 0; turno < 8; turno++)
+            {
+                if (agenda[dia, turno].nombre != null)
+                {
+                    Turno p = agenda[dia, turno];
+                    Console.WriteLine($"\nDetalles del Turno Día {dia}, Slot {turno}:");
+                    Console.WriteLine($"Nombre: {p.nombre}");
+                    Console.WriteLine($"Cédula: {p.cédula}");
+                    Console.WriteLine($"Motivo: {p.motivo}");
+                    Console.WriteLine($"Fecha: {p.fecha.dia}/{p.fecha.mes}/{p.fecha.año}");
+                    Console.WriteLine($"Hora: {p.hora}:{p.minuto:D2}");
+                }
+            }
+        }
+    }
+}
