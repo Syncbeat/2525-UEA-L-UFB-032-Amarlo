@@ -1,0 +1,28 @@
+// 1. Programa que almacene asignaturas de un curso
+
+using System;
+using System.Collections.Generic;
+
+class Programa
+
+{
+
+    static void Main()
+    {
+        List<string> asignaturas = new List<string>
+        {
+            "Matemáticas",
+            "Fisica",
+            "Historia",
+            "Quimica",
+            "Lenguaje"
+        };
+
+        Console.WriteLine("Asignaturas de la Clase: ");
+        foreach(string asignatura in asignaturas)
+        {
+            Console.WriteLine($"{asignatura}");
+        }
+
+    }
+}

@@ -1,0 +1,23 @@
+// 2. Programa que imprime "Yo estudio (asignatura)"
+
+using System;
+using System.Collections.Generic;
+
+class Programa
+{
+    static void Main()
+    {
+        List<string> asignaturas = new List<string>
+        {
+            "Matemáticas",
+            "Fisica",
+            "Historia",
+            "Quimica",
+            "Lenguaje"
+        };
+        foreach (string asignatura in asignaturas)
+        {
+            Console.WriteLine($"Yo estudio {asignatura}");
+        }
+    }
+}

@@ -1,0 +1,36 @@
+//4. Numeros ganadores de la loteria ordenados de menor a mayor
+
+using System;
+using System.Collections.Generic;
+
+class Programa
+{
+    static void Main()
+    {
+        const int total = 6;
+        List<int> numeros = new List<int>();
+
+        Console.WriteLine($"Ingresa los {total} números ganadores del boleto de lotería");
+
+        while (numeros.Count < total)
+        {
+            Console.Write($"Número ganador {numeros.Count + 1}: ");
+            string entrada = Console.ReadLine();
+
+            if (int.TryParse(entrada, out int n) && n >= 1 && n <= 49 && !numeros.Contains(n))
+            {
+                numeros.Add(n);
+            }
+            else
+            {
+                Console.WriteLine("Ingresa un valor valido, no repetido(1 - 49)");
+            
+            }
+        }
+
+         numeros.Sort();
+
+        Console.WriteLine($"Números ganadores ordenados: ");
+        Console.WriteLine(string.Join(" - ", numeros));
+    }
+}

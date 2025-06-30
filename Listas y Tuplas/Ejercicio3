@@ -1,0 +1,45 @@
+//3. Programa que muestre asignatura y su calificacion
+
+using System;
+using System.Collections.Generic;
+
+class Programa
+{
+    static void Main()
+    {
+        List<string> asignaturas = new List<string>
+        {
+            "Matemáticas",
+            "Física",
+            "Historia",
+            "Química",
+            "Lenguaje"
+        };
+
+        Dictionary<string, double> notas = new Dictionary<string, double>();
+
+        foreach (string asignatura in asignaturas)
+        {
+            double nota;
+            while (true)
+            {
+                Console.Write($"Ingresa tu nota final de {asignatura}: ");
+                string entrada = Console.ReadLine();
+
+                if (double.TryParse(entrada, out nota) && nota >= 0 && nota <= 10)
+                {
+                    notas[asignatura] = nota;
+                    break;
+                }
+
+                Console.WriteLine("Ingresa un número válido (0 a 10).");
+            }
+        }
+
+        Console.WriteLine("Notas finales: ");
+        foreach (string asignatura in asignaturas)
+        {
+            Console.WriteLine($"{asignatura}: nota final = {notas[asignatura]}");
+        }
+    }
+}

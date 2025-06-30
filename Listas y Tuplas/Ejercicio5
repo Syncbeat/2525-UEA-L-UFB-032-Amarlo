@@ -1,0 +1,21 @@
+// 5. Lista de números invertidos separados con comas
+
+using System;
+using System.Collections.Generic;
+
+class Programa
+{
+    static void Main()
+    {
+    
+        List<int> numeros = new List<int>();
+        for (int i = 1; i <= 10; i++)
+        {
+            numeros.Add(i);
+        }
+
+        numeros.Reverse();
+
+        Console.WriteLine(string.Join(", ", numeros));
+    }
+}

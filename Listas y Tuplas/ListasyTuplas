@@ -1,0 +1,162 @@
+// Listas y Tuplas 
+// Resolución de 5 problemas de programación en C#
+
+// 1. Programa que almacene asignaturas de un curso
+
+using System;
+using System.Collections.Generic;
+
+class Programa
+
+{
+
+    static void Main()
+    {
+        List<string> asignaturas = new List<string>
+        {
+            "Matemáticas",
+            "Fisica",
+            "Historia",
+            "Quimica",
+            "Lenguaje"
+        };
+
+        Console.WriteLine("Asignaturas de la Clase: ");
+        foreach(string asignatura in asignaturas)
+        {
+            Console.WriteLine($"{asignatura}");
+        }
+
+    }
+}
+
+
+
+// 2. Programa que imprime "Yo estudio (asignatura)"
+
+using System;
+using System.Collections.Generic;
+
+class Programa
+{
+    static void Main()
+    {
+        List<string> asignaturas = new List<string>
+        {
+            "Matemáticas",
+            "Fisica",
+            "Historia",
+            "Quimica",
+            "Lenguaje"
+        };
+        foreach (string asignatura in asignaturas)
+        {
+            Console.WriteLine($"Yo estudio {asignatura}");
+        }
+    }
+}
+
+//3. Programa que muestre asignatura y su calificacion
+
+using System;
+using System.Collections.Generic;
+
+class Programa
+{
+    static void Main()
+    {
+        List<string> asignaturas = new List<string>
+        {
+            "Matemáticas",
+            "Física",
+            "Historia",
+            "Química",
+            "Lenguaje"
+        };
+
+        Dictionary<string, double> notas = new Dictionary<string, double>();
+
+        foreach (string asignatura in asignaturas)
+        {
+            double nota;
+            while (true)
+            {
+                Console.Write($"Ingresa tu nota final de {asignatura}: ");
+                string entrada = Console.ReadLine();
+
+                if (double.TryParse(entrada, out nota) && nota >= 0 && nota <= 10)
+                {
+                    notas[asignatura] = nota;
+                    break;
+                }
+
+                Console.WriteLine("Ingresa un número válido (0 a 10).");
+            }
+        }
+
+        Console.WriteLine("Notas finales: ");
+        foreach (string asignatura in asignaturas)
+        {
+            Console.WriteLine($"{asignatura}: nota final = {notas[asignatura]}");
+        }
+    }
+}
+
+//4. Numeros ganadores de la loteria ordenados de menor a mayor
+
+using System;
+using System.Collections.Generic;
+
+class Programa
+{
+    static void Main()
+    {
+        const int total = 6;
+        List<int> numeros = new List<int>();
+
+        Console.WriteLine($"Ingresa los {total} números ganadores del boleto de lotería");
+
+        while (numeros.Count < total)
+        {
+            Console.Write($"Número ganador {numeros.Count + 1}: ");
+            string entrada = Console.ReadLine();
+
+            if (int.TryParse(entrada, out int n) && n >= 1 && n <= 49 && !numeros.Contains(n))
+            {
+                numeros.Add(n);
+            }
+            else
+            {
+                Console.WriteLine("Ingresa un valor valido, no repetido(1 - 49)");
+            
+            }
+        }
+
+         numeros.Sort();
+
+        Console.WriteLine($"Números ganadores ordenados: ");
+        Console.WriteLine(string.Join(" - ", numeros));
+    }
+}
+
+// 5. Lista de números invertidos separados con comas
+
+using System;
+using System.Collections.Generic;
+
+class Programa
+{
+    static void Main()
+    {
+    
+        List<int> numeros = new List<int>();
+        for (int i = 1; i <= 10; i++)
+        {
+            numeros.Add(i);
+        }
+
+        numeros.Reverse();
+
+        Console.WriteLine(string.Join(", ", numeros));
+    }
+}
