@@ -1,0 +1,178 @@
+using System;
+using System.Collections.Generic;
+
+namespace RegistroRedesIII
+{
+    class Student
+    {
+        public string Cedula   { get; set; }
+        public string Nombre   { get; set; }
+        public string Apellido { get; set; }
+        public string Correo   { get; set; }
+        public double NotaDef  { get; set; }
+
+        public bool Aprobado => NotaDef >= 7.0; 
+
+        public override string ToString()
+        {
+            return $"{Cedula,-12} | {Nombre,-10} {Apellido,-12} | {Correo,-25} | {NotaDef,4:0.0} | {(Aprobado ? "✔ Aprobado" : "✘ Reprobado")}";
+        }
+    }
+
+    class Program
+    {
+        // Lista de estudiantes
+        static LinkedList<Student> estudiantes = new LinkedList<Student>();
+
+        static void Main()
+        {
+            int opcion;
+            do
+            {
+                MostrarMenu();
+                Console.Write("Opción: ");
+                if (!int.TryParse(Console.ReadLine(), out opcion))
+                {
+                    Console.WriteLine("Entrada no válida.\n");
+                    continue;
+                }
+
+                switch (opcion)
+                {
+                    case 1: AgregarEstudiante();      break;
+                    case 2: BuscarPorCedula();        break;
+                    case 3: EliminarEstudiante();     break;
+                    case 4: MostrarTotal(true);       break;
+                    case 5: MostrarTotal(false);      break;
+                    case 6: ListarTodos();            break;
+                    case 0: Console.WriteLine("Programa finalizado."); break;
+                    default: Console.WriteLine("Opción inexistente.\n"); break;
+                }
+            } while (opcion != 0);
+        }
+
+        static void MostrarMenu()
+        {
+            Console.WriteLine("\n=== Registro de Estudiantes - Redes III ===");
+            Console.WriteLine("1. Agregar estudiante");
+            Console.WriteLine("2. Buscar estudiante por cédula");
+            Console.WriteLine("3. Eliminar estudiante");
+            Console.WriteLine("4. Mostrar total de aprobados");
+            Console.WriteLine("5. Mostrar total de reprobados");
+            Console.WriteLine("6. Mostrar lista completa");
+            Console.WriteLine("0. Salir");
+        }
+
+        static void AgregarEstudiante()
+        {
+            Console.WriteLine("\n-- Nuevo Estudiante --");
+            var st = new Student
+            {
+                Cedula   = LeerNoVacio("Cédula: "),
+                Nombre   = LeerNoVacio("Nombre: "),
+                Apellido = LeerNoVacio("Apellido: "),
+                Correo   = LeerNoVacio("Correo: "),
+                NotaDef  = LeerNota("Nota definitiva (1‑10): ")
+            };
+
+            // Agrupacion por condicion aprobado o reprobado
+            if (st.Aprobado)
+                estudiantes.AddFirst(st);
+            else
+                estudiantes.AddLast(st);
+
+            Console.WriteLine($"Estudiante agregado como {(st.Aprobado ? "aprobado (inicio)" : "reprobado (final)").ToUpper()}.\n");
+        }
+
+        static void BuscarPorCedula()
+        {
+            Console.Write("\nIngrese cédula a buscar: ");
+            string ced = Console.ReadLine()?.Trim();
+            foreach (var st in estudiantes)
+            {
+                if (st.Cedula.Equals(ced, StringComparison.OrdinalIgnoreCase))
+                {
+                    Console.WriteLine("\nEncontrado:");
+                    Console.WriteLine(st);
+                    return;
+                }
+            }
+            Console.WriteLine("No se encontró un estudiante con esa cédula.\n");
+        }
+
+        static void EliminarEstudiante()
+        {
+            Console.Write("\nIngrese cédula a eliminar: ");
+            string ced = Console.ReadLine()?.Trim();
+            var nodo = estudiantes.First;
+
+            while (nodo != null)
+            {
+                if (nodo.Value.Cedula.Equals(ced, StringComparison.OrdinalIgnoreCase))
+                {
+                    estudiantes.Remove(nodo);
+                    Console.WriteLine("Estudiante eliminado correctamente.\n");
+                    return;
+                }
+                nodo = nodo.Next;
+            }
+            Console.WriteLine("No se encontró un estudiante con esa cédula.\n");
+        }
+
+        static void MostrarTotal(bool aprobados)
+        {
+            int conteo = 0;
+            foreach (var st in estudiantes)
+                if (st.Aprobado == aprobados) conteo++;
+
+            Console.WriteLine($"\nTotal de {(aprobados ? "aprobados" : "reprobados")}: {conteo}\n");
+        }
+
+        static void ListarTodos()
+        {
+            if (estudiantes.Count == 0)
+            {
+                Console.WriteLine("\nLa lista está vacía.\n");
+                return;
+            }
+
+            Console.WriteLine("\nCédula       | Nombre y Apellido   | Correo                    | Nota | Estado");
+            Console.WriteLine(new string('-', 80));
+
+            foreach (var st in estudiantes)
+                Console.WriteLine(st);
+
+            Console.WriteLine($"\nTotal general: {estudiantes.Count}");
+            Console.WriteLine($"Aprobados: {Contar(true)}  |  Reprobados: {Contar(false)}\n");
+        }
+
+        static string LeerNoVacio(string mensaje)
+        {
+            string? input;
+            do
+            {
+                Console.Write(mensaje);
+                input = Console.ReadLine()?.Trim();
+            } while (string.IsNullOrEmpty(input));
+            return input;
+        }
+
+        static double LeerNota(string mensaje)
+        {
+            double nota;
+            do
+            {
+                Console.Write(mensaje);
+            } while (!double.TryParse(Console.ReadLine(), out nota) || nota < 1 || nota > 10);
+            return nota;
+        }
+
+        static int Contar(bool aprobados)
+        {
+            int c = 0;
+            foreach (var st in estudiantes)
+                if (st.Aprobado == aprobados) c++;
+            return c;
+        }
+    }
+}

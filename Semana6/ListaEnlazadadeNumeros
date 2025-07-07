@@ -1,0 +1,82 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    // Funcion que verifica si un número es primo
+    static bool EsPrimo(int numero)
+    {
+        if (numero < 2) return false;
+        for (int i = 2; i <= Math.Sqrt(numero); i++)
+        {
+            if (numero % i == 0) return false;
+        }
+        return true;
+    }
+
+    // Verfifica si es un número es Armstrong
+    static bool EsArmstrong(int numero)
+    {
+        int original = numero;
+        int suma = 0;
+        int cantidadDigitos = numero.ToString().Length;
+
+        while (numero > 0)
+        {
+            int digito = numero % 10;
+            suma += (int)Math.Pow(digito, cantidadDigitos);
+            numero /= 10;
+        }
+
+        return suma == original;
+    }
+
+    static void Main()
+    {
+        LinkedList<int> listaPrimos = new LinkedList<int>();
+        LinkedList<int> listaArmstrong = new LinkedList<int>();
+
+        // Recoge los numeros que ingresa el usuario
+        Console.WriteLine("Ingresa números enteros (0 para terminar lista):");
+        int n;
+        do
+        {
+            Console.Write("Número: ");
+            n = int.Parse(Console.ReadLine());
+
+            if (n != 0)
+            {
+                if (EsPrimo(n))
+                {
+                    listaPrimos.AddLast(n);
+                }
+                if (EsArmstrong(n))
+                {
+                    listaArmstrong.AddFirst(n);
+                }
+            }
+
+        } while (n != 0);
+
+        //Cantidad de datos
+        Console.WriteLine($"\nCantidad de números primos: {listaPrimos.Count}");
+        Console.WriteLine($"Cantidad de números Armstrong: {listaArmstrong.Count}");
+
+        //Lista con más elementos
+        if (listaPrimos.Count > listaArmstrong.Count)
+            Console.WriteLine("La lista de números primos tiene más elementos.");
+        else if (listaArmstrong.Count > listaPrimos.Count)
+            Console.WriteLine("La lista de números Armstrong tiene más elementos.");
+        else
+            Console.WriteLine("Ambas listas tienen la misma cantidad de elementos.");
+
+        //Mostrar todos los datos
+        Console.WriteLine("\nLista de números primos:");
+        foreach (int num in listaPrimos)
+            Console.Write($"{num} ");
+
+        Console.WriteLine("\nLista de números Armstrong:");
+        foreach (int num in listaArmstrong)
+            Console.Write($"{num} ");
+    }
+}
