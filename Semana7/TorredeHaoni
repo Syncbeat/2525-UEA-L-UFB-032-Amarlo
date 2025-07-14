@@ -1,0 +1,82 @@
+using System;
+using System.Collections.Generic;
+
+class TorresDeHanoi
+{
+    // Definimos las tres torres como pilas
+
+    static Stack<int> torreOrigen = new Stack<int>();
+    static Stack<int> torreAuxiliar = new Stack<int>();
+    static Stack<int> torreDestino = new Stack<int>();
+
+    // Imprime el estado actual de las torres
+
+    static void ImprimirTorres()
+    {
+        Console.WriteLine("\nEstado actual de las torres:");
+        MostrarTorre("Origen", torreOrigen);
+        MostrarTorre("Auxiliar", torreAuxiliar);
+        MostrarTorre("Destino", torreDestino);
+        Console.WriteLine("-----------------------------");
+    }
+
+    static void MostrarTorre(string nombre, Stack<int> torre)
+    {
+        Console.Write($"{nombre}: ");
+        foreach (var disco in torre)
+        {
+            Console.Write($"{disco} ");
+        }
+        Console.WriteLine();
+    }
+
+    // Método recursivo para resolver el problema
+
+    static void ResolverHanoi(int n, Stack<int> origen, Stack<int> destino, Stack<int> auxiliar, string nombreOrigen, string nombreDestino, string nombreAuxiliar)
+    {
+        if (n == 1)
+        {
+            // Mover un solo disco
+
+            int disco = origen.Pop();
+            destino.Push(disco);
+            Console.WriteLine($"Mover disco {disco} de {nombreOrigen} a {nombreDestino}");
+            ImprimirTorres();
+        }
+        else
+        {
+            // Mover discos a la torre auxiliar
+
+            ResolverHanoi(n - 1, origen, auxiliar, destino, nombreOrigen, nombreAuxiliar, nombreDestino);
+
+            // Mover el disco restante a la torre destino
+
+            ResolverHanoi(1, origen, destino, auxiliar, nombreOrigen, nombreDestino, nombreAuxiliar);
+
+            // Mover los discos desde la torre auxiliar a la torre destino
+
+            ResolverHanoi(n - 1, auxiliar, destino, origen, nombreAuxiliar, nombreDestino, nombreOrigen);
+        }
+    }
+
+    static void Main(string[] args)
+    {
+        // Puedes cambiar este valor para probar con más discos
+
+        int numeroDiscos = 3; 
+
+        // Inicializar la torre de origen con los discos (el más grande abajo)
+        
+        for (int i = numeroDiscos; i >= 1; i--)
+        {
+            torreOrigen.Push(i);
+        }
+
+        Console.WriteLine("Resolviendo Torres de Hanoi con Pilas...");
+        ImprimirTorres();
+
+        ResolverHanoi(numeroDiscos, torreOrigen, torreDestino, torreAuxiliar, "Origen", "Destino", "Auxiliar");
+
+        Console.WriteLine("\n¡Problema resuelto!");
+    }
+}

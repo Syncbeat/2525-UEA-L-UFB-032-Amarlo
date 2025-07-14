@@ -1,0 +1,63 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    // Función que verifica si una expresión tiene paréntesis, llaves y corchetes balanceados
+
+    static bool EstaBalanceada(string expresion)
+    {
+        // Pila para almacenar los símbolos de apertura
+
+        Stack<char> pila = new Stack<char>(); 
+
+       // Diccionario para emparejar símbolos
+
+        Dictionary<char, char> pares = new Dictionary<char, char> 
+        {
+            { ')', '(' },
+            { ']', '[' },
+            { '}', '{' }
+        };
+
+        foreach (char c in expresion)
+        {
+            // Si es un símbolo de apertura
+            if (pares.ContainsValue(c)) 
+            {
+                pila.Push(c);
+            }
+            // Si es un símbolo de cierre
+            
+            else if (pares.ContainsKey(c)) 
+            {
+                // Si la pila está vacía o el símbolo no coincide con el último abierto
+
+                if (pila.Count == 0 || pila.Pop() != pares[c])
+                {
+                    return false; // No está balanceado
+                }
+            }
+        }
+
+        // Si la pila está vacía al final, está balanceado
+
+        return pila.Count == 0; 
+    }
+
+    static void Main()
+    {
+        string expresion = "{7 + (8 * 5) - [(9 - 7) + (4 + 1)]}";
+
+        // Llamamos a la función y mostramos el resultado
+
+        if (EstaBalanceada(expresion))
+        {
+            Console.WriteLine("Fórmula balanceada.");
+        }
+        else
+        {
+            Console.WriteLine("Fórmula no balanceada.");
+        }
+    }
+}
