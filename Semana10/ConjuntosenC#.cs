@@ -1,0 +1,59 @@
+﻿using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Crear conjunto de 500 ciudadanos
+        HashSet<string> ciudadanos = new HashSet<string>();
+        for (int i = 1; i <= 500; i++)
+        {
+            ciudadanos.Add("Ciudadano " + i);
+        }
+
+        //75 ciudadanos vacunados con Pfizer
+        HashSet<string> vacunadosPfizer = new HashSet<string>();
+        for (int i = 1; i <= 75; i++)
+        {
+            vacunadosPfizer.Add("Ciudadano " + i);
+        }
+
+        //75 ciudadanos vacunados con AstraZeneca
+        HashSet<string> vacunadosAstra = new HashSet<string>();
+        for (int i = 76; i <= 150; i++)
+        {
+            vacunadosAstra.Add("Ciudadano " + i);
+        }
+
+        // Operaciones de conjuntos
+        HashSet<string> noVacunados = new HashSet<string>(ciudadanos);
+        noVacunados.ExceptWith(vacunadosPfizer);
+        noVacunados.ExceptWith(vacunadosAstra);
+
+        HashSet<string> ambasDosis = new HashSet<string>(vacunadosPfizer);
+        ambasDosis.IntersectWith(vacunadosAstra);
+
+        HashSet<string> soloPfizer = new HashSet<string>(vacunadosPfizer);
+        soloPfizer.ExceptWith(vacunadosAstra);
+
+        HashSet<string> soloAstra = new HashSet<string>(vacunadosAstra);
+        soloAstra.ExceptWith(vacunadosPfizer);
+
+        // Impresión 
+        Console.WriteLine("Total de ciudadanos: " + ciudadanos.Count);
+        Console.WriteLine("No vacunados: " + noVacunados.Count);
+        Console.WriteLine("Ambas dosis: " + ambasDosis.Count);
+        Console.WriteLine("Solo Pfizer: " + soloPfizer.Count);
+        Console.WriteLine("Solo AstraZeneca: " + soloAstra.Count);
+
+        Console.WriteLine("\nEjemplo de ciudadanos no vacunados:");
+        int contador = 0;
+        foreach (string c in noVacunados)
+        {
+            Console.WriteLine(c);
+            contador++;
+            if (contador >= 10) break; // muestra solo 10
+        }
+    }
+}

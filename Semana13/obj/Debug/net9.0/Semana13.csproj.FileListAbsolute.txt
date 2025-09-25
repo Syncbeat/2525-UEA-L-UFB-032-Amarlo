@@ -1,0 +1,15 @@
+/home/lovelace/Desktop/Universidad Estatal Amazónica/2525-UEA-L-UFB-032-Amarlo-1/Semana13/bin/Debug/net9.0/Semana13
+/home/lovelace/Desktop/Universidad Estatal Amazónica/2525-UEA-L-UFB-032-Amarlo-1/Semana13/bin/Debug/net9.0/Semana13.deps.json
+/home/lovelace/Desktop/Universidad Estatal Amazónica/2525-UEA-L-UFB-032-Amarlo-1/Semana13/bin/Debug/net9.0/Semana13.runtimeconfig.json
+/home/lovelace/Desktop/Universidad Estatal Amazónica/2525-UEA-L-UFB-032-Amarlo-1/Semana13/bin/Debug/net9.0/Semana13.dll
+/home/lovelace/Desktop/Universidad Estatal Amazónica/2525-UEA-L-UFB-032-Amarlo-1/Semana13/bin/Debug/net9.0/Semana13.pdb
+/home/lovelace/Desktop/Universidad Estatal Amazónica/2525-UEA-L-UFB-032-Amarlo-1/Semana13/obj/Debug/net9.0/Semana13.GeneratedMSBuildEditorConfig.editorconfig
+/home/lovelace/Desktop/Universidad Estatal Amazónica/2525-UEA-L-UFB-032-Amarlo-1/Semana13/obj/Debug/net9.0/Semana13.AssemblyInfoInputs.cache
+/home/lovelace/Desktop/Universidad Estatal Amazónica/2525-UEA-L-UFB-032-Amarlo-1/Semana13/obj/Debug/net9.0/Semana13.AssemblyInfo.cs
+/home/lovelace/Desktop/Universidad Estatal Amazónica/2525-UEA-L-UFB-032-Amarlo-1/Semana13/obj/Debug/net9.0/Semana13.csproj.CoreCompileInputs.cache
+/home/lovelace/Desktop/Universidad Estatal Amazónica/2525-UEA-L-UFB-032-Amarlo-1/Semana13/obj/Debug/net9.0/Semana13.sourcelink.json
+/home/lovelace/Desktop/Universidad Estatal Amazónica/2525-UEA-L-UFB-032-Amarlo-1/Semana13/obj/Debug/net9.0/Semana13.dll
+/home/lovelace/Desktop/Universidad Estatal Amazónica/2525-UEA-L-UFB-032-Amarlo-1/Semana13/obj/Debug/net9.0/refint/Semana13.dll
+/home/lovelace/Desktop/Universidad Estatal Amazónica/2525-UEA-L-UFB-032-Amarlo-1/Semana13/obj/Debug/net9.0/Semana13.pdb
+/home/lovelace/Desktop/Universidad Estatal Amazónica/2525-UEA-L-UFB-032-Amarlo-1/Semana13/obj/Debug/net9.0/Semana13.genruntimeconfig.cache
+/home/lovelace/Desktop/Universidad Estatal Amazónica/2525-UEA-L-UFB-032-Amarlo-1/Semana13/obj/Debug/net9.0/ref/Semana13.dll

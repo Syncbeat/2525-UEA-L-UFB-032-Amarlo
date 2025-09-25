@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "CUw/2IJVmE0=",
+  "success": true,
+  "projectFilePath": "/home/lovelace/Desktop/Universidad Estatal Amazónica/2525-UEA-L-UFB-032-Amarlo-1/Semana10/Semana10.csproj",
+  "expectedPackageFiles": [
+    "/home/lovelace/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.9/microsoft.aspnetcore.app.ref.9.0.9.nupkg.sha512"
+  ],
+  "logs": []
+}
